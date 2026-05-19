@@ -1,4 +1,43 @@
-# Financial Engineering - Computer Science - Machine Learning
-The motivation for this work is based on the tendency to think that algorithmic trading problems focus solely on the development of trading strategies capable of consistently outperforming the market. There is extensive literature studying various methods or techniques to achieve this, particularly those related to high-frequency trading techniques. However, real models involve many other factors besides the strategy itself, and neglecting their proper parameterization ultimately affects the model's performance and computational resource consumption.
+# Bayesian Optimization for Algorithmic Trading
 
-When trading in stock markets with algorithms that respond to quantitative conditions, particularly with machine learning techniques, it is common to have to adjust numerous variables to reach the configuration that optimizes returns, which may even change over time. It is also common for the closed-form expression of the objective function and its graphical behavior to be unknown, transforming these into "black box" problems. Without clues about the location of the global optimum, one often resorts to effective but mathematically and computationally inefficient optimization methods. If the model used needs to be recalibrated frequently, this inefficiency becomes operationally unacceptable. Therefore, Bayesian optimization will be used as an appropriate method according to the gathered literature, and variations in its parameterization will be analyzed.
+> Gaussian Process-based hyperparameter optimization for trading strategy tuning. Solving the "black box" problem in quantitative finance.
+
+## Problem
+
+Algorithmic trading strategies have dozens of hyperparameters. Grid search is computationally expensive and doesn't scale. The objective function (strategy returns) is noisy, expensive to evaluate, and has no closed-form expression. You need a smarter way to find optimal configurations.
+
+## Solution
+
+Applied Bayesian optimization using Gaussian Processes to efficiently search the hyperparameter space:
+- Models the objective function as a probabilistic surrogate
+- Uses acquisition functions to balance exploration and exploitation
+- Finds near-optimal configurations in far fewer evaluations than grid or random search
+
+## Strategies Tested
+
+Multiple trading strategies were optimized, including:
+- VWAP vs SMA crossover
+- Three Standard Moving Average
+- Chandelier Exit
+- Bollinger Bands Volume
+- Various momentum and mean-reversion strategies
+
+## Results
+
+Results are exported as CSV files with Sharpe ratio, total returns, drawdown, and other performance metrics for each configuration tested.
+
+```
+Results/    # CSV outputs from optimization runs
+src/        # Core optimization and strategy code
+```
+
+## Tech Stack
+
+- Python, NumPy, SciPy
+- Gaussian Process regression
+- Custom backtesting framework
+- Visualization and result analysis
+
+## Author
+
+**Francisco Cucullu** | [franciscocucullu.com](https://franciscocucullu.com)
